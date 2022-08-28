@@ -1,0 +1,157 @@
+﻿<Window x:Class="NC.Core.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NC.Core" 
+        xmlns:public="clr-namespace:NC.Public;assembly=NC.Public" 
+       
+        xmlns:statics="clr-namespace:NC.Public.Statics;assembly=NC.Public"
+        xmlns:tools="clr-namespace:NC.Public.Tools;assembly=NC.Public"
+        
+       
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Name="Win"
+        WindowState="Maximized"
+        Title="سیستم جامع مالی و اداری" >
+    
+    <Window.Resources>
+       
+        <SolidColorBrush x:Key="XXDarkSeperator">DarkGray</SolidColorBrush>
+        <SolidColorBrush x:Key="XXLightSeperator">White</SolidColorBrush>
+        <Style TargetType="local:MainWindow" >
+            <Setter Property="Template" Value="{StaticResource BaseWindow}">
+            
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+            CornerRadius="0"
+            CaptionHeight="{Binding TitleHeight}"
+            ResizeBorderThickness="{Binding ResizeBorderThickness}"
+            GlassFrameThickness="0"
+            
+            ></WindowChrome>
+    </WindowChrome.WindowChrome>
+    <DockPanel ClipToBounds="True">
+        <ContentControl Style="{Binding  SelectedContentMenu}"  DockPanel.Dock="Top" x:Name="ContentMenuControl" ></ContentControl>
+
+
+
+
+        <StatusBar DockPanel.Dock="Bottom" x:Name="MainStatusBarBasInfo"  Height="32" Visibility="{Binding IsVisibleMainStatusBar}">
+            
+            <StatusBarItem x:Name="TxtCompany" >
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderThickness="0,0,1,0"  BorderBrush="{StaticResource XXLightSeperator}" Padding="10,0,10,0" >
+                         <TextBlock   Height="{Binding ElementName=MainStatusBar,Path=ActualHeight}" Text="عنوان شرکت"  ></TextBlock>
+                    </Border>
+                    <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource XXDarkSeperator}" Padding="10,0,10,0" >
+                        <TextBlock   Height="{Binding ElementName=MainStatusBar,Path=ActualHeight}" Text="شرکت نیک کامپیوتر کیش" FontWeight="Bold" ></TextBlock>
+                    </Border>
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem x:Name="TxtSystem" >
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderThickness="0,0,1,0"  BorderBrush="{StaticResource XXLightSeperator}" Padding="10,0,10,0" >
+                        <TextBlock   Height="{Binding ElementName=MainStatusBar,Path=ActualHeight}" Text="عنوان سیستم"  ></TextBlock>
+                    </Border>
+                    <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource XXDarkSeperator}" Padding="10,0,10,0" >
+                        <TextBlock   Height="{Binding ElementName=MainStatusBar,Path=ActualHeight}" Text="{Binding Path=ZAppSelected.Name, Source={x:Static statics:StaticVariables.SelectedSystem}}" FontWeight="Bold" ></TextBlock>
+                    </Border>
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem x:Name="TxtUserName" >
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderThickness="0,0,1,0"  BorderBrush="{StaticResource XXLightSeperator}" Padding="10,0,10,0" >
+                        <TextBlock   Height="{Binding ElementName=MainStatusBar,Path=ActualHeight}" Text="نام کاربر"  ></TextBlock>
+                    </Border>
+                    <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource XXDarkSeperator}" Padding="10,0,10,0" >
+                        <TextBlock   Height="{Binding ElementName=MainStatusBar,Path=ActualHeight}" Text="{Binding Path=LogedUser.Name, Source={x:Static statics:StaticVariables.JVMUser}}" FontWeight="Bold" ></TextBlock>
+                    </Border>
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem x:Name="TxtUserPosition" >
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource XXLightSeperator}" Padding="10,0,10,0" >
+                        <TextBlock   Height="{Binding ElementName=MainStatusBar,Path=ActualHeight}" Text="پست سازمانی"  ></TextBlock>
+                    </Border>
+                    <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource XXDarkSeperator}" Padding="10,0,10,0" >
+                        <TextBlock   Height="{Binding ElementName=MainStatusBar,Path=ActualHeight}" Text="{Binding Path=LogedUser.Position, Source={x:Static statics:StaticVariables.JVMUser}}" FontWeight="Bold" ></TextBlock>
+                    </Border>
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem x:Name="TxtDoreh"  >
+               
+                <StackPanel Orientation="Horizontal" >
+                    <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource XXLightSeperator}" Padding="0,0,10,0" >
+                        <TextBlock   Height="{Binding ElementName=MainStatusBar,Path=ActualHeight}" Text="دوره عملیاتی"  ></TextBlock>
+                    </Border>
+                    <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource XXDarkSeperator}" Padding="10,0,10,0" >
+                        <TextBlock   Height="{Binding ElementName=MainStatusBar,Path=ActualHeight}" Text="{Binding Path=CBasicInfoSelected.Name ,Source={x:Static statics:StaticVariables.SelectedDoreh}}" FontWeight="Bold" ></TextBlock>
+                    </Border>
+                </StackPanel>
+               
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" >
+               <ProgressBar   Height="20" IsIndeterminate="{Binding IsIndeterminate}" Background="Red" ></ProgressBar>
+            </StatusBarItem>
+            
+            
+        </StatusBar>
+        <Grid x:Name="WorkArea" Background="AntiqueWhite">
+            <Canvas Width="{Binding ElementName=WorkArea,Path=ActualWidth}" Height="{Binding ElementName=WorkArea,Path=ActualHeight}" Background="Yellow" ClipToBounds="True">
+                <ContentControl Style="{StaticResource  ContentTools}" Canvas.Left="0" Canvas.Top="0" Height="{Binding ElementName=WorkArea,Path=ActualHeight}" ></ContentControl>
+            </Canvas>
+        </Grid>
+      
+       <Grid>
+            
+            <DataGrid 
+                x:Name="JDataGrid" 
+                IsReadOnly="True" 
+                AutoGenerateColumns="False" 
+                Margin="10" 
+                LoadingRow="DApps_LoadingRow"
+              RowHeaderWidth="30"
+                
+                ItemsSource="{Binding DataList}">
+                
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                        Header="First Name" 
+                        MinWidth="150" 
+                        Width="*"
+                        Binding="{Binding FirstName}">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn 
+                        Header="Last Name" 
+                        MinWidth="150" 
+                        Width="*"
+                        Binding="{Binding LastName}">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn 
+                        Header="Task Details" 
+                        MinWidth="150" 
+                       
+                        Binding="{Binding TaskDetails}">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn 
+                        Header="Start Date" 
+                        MinWidth="150" 
+                       
+                        Binding="{Binding StartDate}">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn 
+                        Header="End Date" 
+                        MinWidth="150" 
+                        Binding="{Binding EndDate}">
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</Window>
