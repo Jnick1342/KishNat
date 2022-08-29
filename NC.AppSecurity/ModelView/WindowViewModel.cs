@@ -1,7 +1,7 @@
 ﻿
 using NC.Public;
 using NC.Public.ModelView;
-using NC.Security;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +11,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace NC.Core.ModelView
+namespace NC.AppSecurity.ModelView
 {
     public partial class WindowViewModel : GlobalViewModel
     {
       
-        //#region SecurityCommand
-        //    public ICommand UserCommand { get; set; }
-        //#endregion
+        #region SecurityCommand
+            public ICommand UserCommand { get; set; }
+        #endregion
 
         //public Visibility LoginVisibility { get { return NC.Public.Statics.StaticVariables.JVMUser.LogedUser == null ? Visibility.Collapsed : Visibility.Visible; } }
         //public Visibility LogoutVisibility { get { return NC.Public.Statics.StaticVariables.JVMUser.LogedUser == null ? Visibility.Visible : Visibility.Collapsed; } }
@@ -82,9 +82,9 @@ namespace NC.Core.ModelView
         #region Constructor
         public WindowViewModel(Window window) : base(window)
         {
-           //Style style = Application.Current.MainWindow.FindResource("ContentStyle") as Style;
-           // MainWorkAreaContentControl = style;
-           // OnPropertyChanged(nameof(MainWorkAreaContentControl));
+           Style style = Application.Current.MainWindow.FindResource("ContentStyle") as Style;
+            MainWorkAreaContentControl = style;
+            OnPropertyChanged(nameof(MainWorkAreaContentControl));
 
             //LoginCommand = new RelayCommand(() =>
             //{
@@ -220,27 +220,27 @@ namespace NC.Core.ModelView
 
 
 
-            //UserCommand = new RelayCommand(() =>
-            //{
-            //     style = new Style();
-            //    try
-            //    {
+            UserCommand = new RelayCommand(() =>
+            {
+                 style = new Style();
+                try
+                {
                     
-            //       ContentControl cc= Application.Current.MainWindow.FindName("MyWorkArea") as ContentControl;
-            //        var foo = new Uri("pack://application:,,,/NC.Security;component/Style/UserStyle.xaml", UriKind.RelativeOrAbsolute);
-            //       // var result = Application.Current.Resources.MergedDictionaries.Remove(new ResourceDictionary() { Source = foo });
-            //        Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = foo });
-            //        style = Application.Current.MainWindow.FindResource("ContentUserStyle") as Style;
-            //       // MainWorkAreaContentControl = style;
-            //      //  OnPropertyChanged(nameof(MainWorkAreaContentControl));
-            //        cc.Style = style;
-            //    }
-            //    catch
-            //    {
-            //        var foo = new Uri("pack://application:,,,/NC.Security;component/Style/UserStyle.xaml", UriKind.RelativeOrAbsolute);
-            //        Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = foo });
-            //       // style = Application.Current.MainWindow.FindResource("ContentStyle") as Style;
-            //    }
+                   ContentControl cc= Application.Current.MainWindow.FindName("MyWorkArea") as ContentControl;
+                    var foo = new Uri("pack://application:,,,/NC.Security;component/Style/UserStyle.xaml", UriKind.RelativeOrAbsolute);
+                   // var result = Application.Current.Resources.MergedDictionaries.Remove(new ResourceDictionary() { Source = foo });
+                    Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = foo });
+                    style = Application.Current.MainWindow.FindResource("ContentUserStyle") as Style;
+                   // MainWorkAreaContentControl = style;
+                  //  OnPropertyChanged(nameof(MainWorkAreaContentControl));
+                    cc.Style = style;
+                }
+                catch
+                {
+                    var foo = new Uri("pack://application:,,,/NC.Security;component/Style/UserStyle.xaml", UriKind.RelativeOrAbsolute);
+                    Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = foo });
+                   // style = Application.Current.MainWindow.FindResource("ContentStyle") as Style;
+                }
                
               //  MainWorkAreaContentControl = style;
               // OnPropertyChanged(nameof(MainWorkAreaContentControl));
@@ -248,7 +248,7 @@ namespace NC.Core.ModelView
               //WinUser win = new WinUser();
               //win.ShowDialog();
 
-            //});
+            });
         }
         #endregion
     }

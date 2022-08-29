@@ -10,16 +10,16 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace NC.Security.ModelView
+namespace NC.Core.ModelView
 {
-    public partial class SecurityViewModel : GlobalViewModel
+    public partial class WindowViewModel : GlobalViewModel
     {
 
 
         public ICommand UserCommand { get; set; }
 
         //    #region Constructor
-        public SecurityViewModel(Window window) : base(window)
+        public WindowViewModel(Window window) : base(window)
         {
 
 

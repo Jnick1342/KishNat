@@ -1,12 +1,11 @@
 ﻿
 
 
-using NC.Core.ModelView;
+using NC.AppSecurity.ModelView;
 using NC.Public;
-using NC.Security;
+
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -22,7 +21,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NC.Core
+namespace NC.AppSecurity
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -154,11 +153,6 @@ namespace NC.Core
         {
             MyWorkArea.Width = MyCanvas.Width;
             MyWorkArea.Height = MyCanvas.Height;
-        }
-
-        private void test_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start(new ProcessStartInfo() { FileName="AppSecurity" });
         }
     }
 }

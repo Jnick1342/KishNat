@@ -136,6 +136,7 @@ namespace NC.Public.ModelView
 
                 NC.Public.Statics.StaticVariables.SelectedSystem.ZAppSelected = new NC.Models.DBModels.ZApp() { AppId = "Z", Name = "سیستم حراست " };
                 OnPropertyChanged(nameof(SelectedContentMenu));
+                
             });
             CSystemCommand = new RelayCommand(() =>
             {

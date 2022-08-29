@@ -37,7 +37,7 @@ namespace NC.Security
 
             InitializeComponent();
 
-            this.DataContext = new NC.Security.ModelView.SecurityViewModel(this);
+            this.DataContext = new NC.Core.ModelView.WindowViewModel(this);
             this.WorkAreaControl.Style = style;
             this.WorkAreaControl.DataContext = new NC.Security.ModelView.UserView(this);
         }

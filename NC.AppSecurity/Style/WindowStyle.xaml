@@ -1,0 +1,170 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:local="clr-namespace:NC.Public.Component;assembly=NC.Public" 
+                    >
+
+    <FontFamily  x:Key="IranSans">pack://application;,,,/Fonts/#IRANSans(FaNum).ttf</FontFamily>
+    
+    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
+        <Setter Property="FontFamily" Value="{StaticResource IranSans}"/>
+        <Setter Property="ClipToBounds" Value="True"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
+        <Setter Property="FontFamily" Value="{StaticResource IranSans}"/>
+        <Setter Property="ClipToBounds" Value="True"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+    </Style>
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Height" Value="32"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Height" Value="32"></Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Height" Value="32"></Setter>
+        
+    </Style>
+    <Style TargetType="{x:Type local:JTextBox}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="Height" Value="32"></Setter>
+
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}">
+        
+    </Style>
+
+
+    <SolidColorBrush x:Key="BaseWindow.Title.Background" Color="red"></SolidColorBrush>
+    <SolidColorBrush x:Key="BaseWindowModal.Title.Background" Color="Yellow"></SolidColorBrush>
+    
+    <ControlTemplate TargetType="Window" x:Key="BaseWindow" >
+        <Border Padding="{Binding OuterMarginSizeThickness,FallbackValue=10}" Background="Gray" >
+            <Grid Background="Red">
+                <Border  CornerRadius="{Binding WindowCornerRadius,FallbackValue=10}" Background="{Binding ForegroundLightBrush,FallbackValue=White}">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="0" Opacity=".25"></DropShadowEffect>
+                    </Border.Effect>
+                </Border>
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding TitleHeightGridLength,FallbackValue=42}"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0" Background="{StaticResource BaseWindow.Title.Background}"  Panel.ZIndex="1"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="10" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Menu  WindowChrome.IsHitTestVisibleInChrome="True"     >
+                                <MenuItem >
+                                    <MenuItem.Header>
+                                        <Border CornerRadius="2" BorderThickness="1" BorderBrush="Black" Background="Red">
+                                            <TextBlock Text="سیستم ها" FontWeight="Bold" Margin="5,5"  Foreground="White"  ></TextBlock>
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="10" ShadowDepth="3"></DropShadowEffect>
+                                            </Border.Effect>
+                                        </Border>
+                                    </MenuItem.Header>
+                                    <MenuItem Header="سیستم حسابداری "  Visibility="{Binding CVisibility}" Command="{Binding ZSystemCommand}" CommandParameter="C"></MenuItem>
+                                    <Separator Visibility="{Binding CVisibility}"></Separator>
+                                    <MenuItem Header="سیستم حراست" Visibility="{Binding ZVisibility}" Command="{Binding ZSystemCommand}" CommandParameter="Z"></MenuItem>
+                                    <Separator Visibility="{Binding ZVisibility}"></Separator>
+                                    <MenuItem Header="سیستم نقدینگی" Visibility="{Binding BVisibility}" Command="{Binding ZSystemCommand}" CommandParameter="B"></MenuItem>
+                                    <Separator Visibility="{Binding BVisibility}"></Separator>
+                                    <MenuItem Header="سیستم سرجمعداری" Visibility="{Binding AVisibility}" Command="{Binding ZSystemCommand}" CommandParameter="A"></MenuItem>
+                                    <Separator Visibility="{Binding AVisibility}"></Separator>
+                                    <MenuItem Header="سیستم انبار" Visibility="{Binding IVisibility}" Command="{Binding ZSystemCommand}" CommandParameter="I"></MenuItem>
+                                    <Separator Visibility="{Binding IVisibility}"></Separator>
+                                    <MenuItem Header="سیستم حقوق دستمزد" Visibility="{Binding PVisibility}" Command="{Binding ZSystemCommand}" CommandParameter="P"></MenuItem>
+                                </MenuItem>
+                            </Menu>
+                        </Grid>
+                        <!--<Button Style="{StaticResource  SystemIconButton}"    Command="{Binding MenuCommand}"  Content="M" Grid.Column="1"/>-->
+                        <Button Style="{StaticResource  SystemIconButton}"    Command="{Binding MinimizeCommand}"  FontWeight="Bold" Content="=" Grid.Column="3"/>
+                        <Button Style="{StaticResource  SystemIconButton}"    Command="{Binding MaximizeCommand}"  Content="[ ]" Grid.Column="4"/>
+                        <Button Style="{StaticResource  SystemIconButton}"    Command="{Binding CloseCommand}" Content="X" Grid.Column="5"/>
+                        <Grid Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="سیستم جامع مالی و اداری"  Grid.Column="2" Margin="6"/>
+                        </Grid>
+
+                    </Grid>
+                    <Border Grid.Row="1"  BorderBrush="Black" Opacity=".4" BorderThickness="0 0.2 0 5"  Height="3">
+                        <Border.Effect>
+                            <DropShadowEffect   Opacity="1"></DropShadowEffect>
+                        </Border.Effect>
+                    </Border>
+                    <Border Grid.Row="2"  Padding="5,0" Margin="0">
+                        <ContentPresenter  Content="{TemplateBinding Content}"></ContentPresenter>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+
+
+    </ControlTemplate>
+
+
+    <ControlTemplate TargetType="Window" x:Key="BaseWindowModal">
+        <Border Padding="{Binding OuterMarginSizeThickness,FallbackValue=10}" Background="Transparent"  >
+            <Grid Background="Transparent">
+                <Border CornerRadius="{Binding WindowCornerRadius,FallbackValue=10}" Background="{Binding ForegroundLightBrush,FallbackValue=White}">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="0" Opacity=".25"></DropShadowEffect>
+                    </Border.Effect>
+                </Border>
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding TitleHeightGridLength,FallbackValue=42}"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0" Background="{StaticResource BaseWindowModal.Title.Background}"  Panel.ZIndex="1"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="10" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <!--<Button Style="{StaticResource  SystemIconButton}"    Command="{Binding MenuCommand}"  Content="M" Grid.Column="1"/>-->
+                        <!--<Button Style="{StaticResource  SystemIconButton}"    Command="{Binding MinimizeCommand}"  FontWeight="Bold" Content="=" Grid.Column="3"/>
+                        <Button Style="{StaticResource  SystemIconButton}"    Command="{Binding MaximizeCommand}"  Content="[ ]" Grid.Column="4"/>-->
+                        <Button Style="{StaticResource  SystemIconButton}"    Command="{Binding CloseCommand}" Content="X" Grid.Column="5"/>
+                        <Grid Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Title}"  Grid.Column="2" Margin="6"/>
+                        </Grid>
+
+                    </Grid>
+                    <Border Grid.Row="1"  BorderBrush="LightBlue" Opacity=".2" BorderThickness="0 0.2 0 2"  Height="3">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="0" Opacity=".25"></DropShadowEffect>
+                        </Border.Effect>
+                    </Border>
+                    <Border Grid.Row="2"  Padding="5">
+                        <ContentPresenter Content="{TemplateBinding Content}"></ContentPresenter>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+
+
+    </ControlTemplate>
+</ResourceDictionary>

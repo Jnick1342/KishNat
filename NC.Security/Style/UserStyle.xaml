@@ -4,7 +4,8 @@
                     >
 
     <Style x:Key="ContentUserStyle" TargetType="{x:Type ContentControl}">
-        
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="Background" Value="Red"/>
         <Setter Property="Foreground" Value="Green"/>
         <Setter Property="Foreground" Value="Green"/>
@@ -14,13 +15,14 @@
                     <DockPanel Margin="20"  KeyboardNavigation.IsTabStop="True" KeyboardNavigation.TabNavigation="Cycle"  FocusManager.FocusedElement="{Binding ElementName=TxtUserid}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="600"></ColumnDefinition>
                                 <ColumnDefinition Width="10"></ColumnDefinition>
-                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="600"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <GridSplitter Grid.Column="1"/>
                             <Grid Grid.Column="0" Background="Red"/>
-                            <Grid Grid.Column="2" Background="Yellow"/>
+                            <GridSplitter Grid.Column="1" Margin="3" Width="4" ResizeBehavior="PreviousAndNext" Background="Blue"/>
+                            <Grid Grid.Column="2" Background="Cyan" />
                         </Grid>
                     </DockPanel>
                 </ControlTemplate>

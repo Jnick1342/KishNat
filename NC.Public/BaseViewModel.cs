@@ -32,11 +32,23 @@ namespace NC.Public
         public Window mWindow;
         private int mOuterMarginSize = 4;
         private int mWindowRedius = 4;
+        private Style mContentTools = null;
+        private Style mMainWorkAreaContentControl = null;
         #endregion
         #region public Properties
         public int ResizeBorder { get; set; } = 4;
         public Thickness ResizeBorderThickness { get { return new Thickness(ResizeBorder + OuterMarginSize); } }
         public Thickness OuterMarginSizeThickness { get { return new Thickness(ResizeBorder + OuterMarginSize); } }
+        public Style ContentTools
+        {
+            get { return mContentTools; }
+            set { mContentTools = value; OnPropertyChanged(nameof(ContentTools)); }
+        }
+        public Style MainWorkAreaContentControl
+        {
+            get { return mMainWorkAreaContentControl; }
+            set { mMainWorkAreaContentControl = value; OnPropertyChanged(nameof(MainWorkAreaContentControl)); }
+        }
         public int OuterMarginSize
         {
             get { return mWindow.WindowState == WindowState.Maximized ? 0 : mOuterMarginSize; }

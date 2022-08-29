@@ -17,8 +17,8 @@ namespace NC.Public.ModelView
     {
         #region private
         private Window mWindow;
-        private string mUserId = "555555";
-        private string mPassword = "345345345";
+        private string mUserId = "admin";
+        private string mPassword = "1234";
       
       
         #endregion
